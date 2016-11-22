@@ -24,6 +24,10 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.3)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      jsonapi (= 0.1.1.beta2)
     activejob (5.0.0.1)
       activesupport (= 5.0.0.1)
       globalid (>= 0.3.6)
@@ -33,6 +37,7 @@ GEM
       activemodel (= 5.0.0.1)
       activesupport (= 5.0.0.1)
       arel (~> 7.0)
+    activerecord-reset-pk-sequence (0.2.1)
     activesupport (5.0.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -41,6 +46,7 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.5.3)
       execjs
+    bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -94,6 +100,9 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    json (1.8.3)
+    jsonapi (0.1.1.beta2)
+      json (~> 1.8)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -114,6 +123,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    pg (0.19.0)
     puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -193,6 +203,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
+  activerecord-reset-pk-sequence
+  bcrypt
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -206,6 +219,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   listen (~> 3.0.5)
+  pg
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-asset-jqueryui
