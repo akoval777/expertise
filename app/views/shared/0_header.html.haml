@@ -1,0 +1,26 @@
+%header.navbar.navbar-fixed-top.navbar-inverse
+  .container.header
+    = link_to t('.logo_title'), root_path, id: "logo"
+    .rails_logo
+      = link_to image_tag("rails.png", alt: "Rails logo")
+  %nav
+    %ul.nav.navbar-nav.pull-right
+      %li= link_to t('.home'), root_path
+      %li= link_to t('.help'), help_path
+        - if signed_in?
+          %li.logged
+            #{current_user.email}
+          = gravatar_for current_user
+          %li#fat-menu.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %p
+                = t('.person')
+                %b.caret
+            %ul.dropdown-menu
+              %li= link_to t('.profile'), current_user
+              %li= link_to t('.settings'), '#'
+              %li.divider
+              %li
+                = link_to t('.sign_out'), signout_path, method: "delete"
+        - else
+          %li= link_to t('.sign_in'), signin_path

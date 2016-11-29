@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'haml-rails'
+gem 'slim'
+gem 'slim-rails'
+gem 'haml2slim'
 gem 'jquery-ui-rails'
 gem 'rails-asset-jqueryui'
 gem 'bootstrap-sass'

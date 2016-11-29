@@ -1,0 +1,27 @@
+header class="navbar navbar-default navbar-fixed-top"
+  div class="container"
+    div class="navbar-header"
+      = link_to 'Expertise на Ruby_on_Rails', root_path, id: "logo", class: "navbar-brand"
+    /div class="rails_logo"
+      /= link_to image_tag("rails.png", alt: "Rails logo")
+    nav class="pull-right"
+      ul class="nav navbar-nav"
+        li = link_to 'Главная', root_path
+        li = link_to 'Помощь', help_path
+        /- if signed_in?
+          li class="logged"
+            #{current_user.email}
+          = gravatar_for current_user
+          li id="fat-menu" class="dropdown"
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              p
+                = t('.person')
+                b class="caret"
+            ul class="dropdown-menu"
+              li = link_to t('.profile'), current_user
+              li = link_to t('.settings'), '#'
+              li class="divider"
+              li
+                = link_to t('.sign_out'), signout_path, method: "delete"
+        /- else
+          li = link_to t('.sign_in'), signin_path
