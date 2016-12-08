@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :images
   resources :values
   resources :users
-  root 'main#index'
+  root 'work#index'
 
   #get 'main/index'
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   match 'work', to: 'work#index', via: 'get'
   match 'choose_theme', to: 'work#choose_theme', via: 'get'
-  match 'display_theme', to: 'work#display_theme', via: 'get'
+  match 'display_theme', to: 'work#display_theme', via: 'post'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

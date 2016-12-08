@@ -1,63 +1,33 @@
-div class="image"
+div class="image" style="margin: 25px 0;"
   div class="row"
     div class="col-md-3"
-      div class="left_controls"
+      div class="left_controls panel panel-default"
         div class="select_theme"
-          = render 'work/button_theme_select'
-        div class="modal_list_results"
-          = render 'work/button_list_results'
-
-        span class="common_value"
-          = 'common_value'
-          h2 class="common" title="Common value"
-        span class="total_values"
-          = 'total_values'
-          h2 class="total" title="Total values" #{@values_qty.round}
-
-      div class="brainlook"
-        a href="http://www.brainlook.org"
-        img alt ="Share to Brainlook" src ="assets/brainlook_logo.png" title ="Braonlook" style ="width:28%;"}
-        p title="Braonlook"
-        = 'share_opinion'
+          = render 'button_theme_select'
 
     div class="col-md-9"
-      div class="image_display"
+      div class="image_display panel panel-primary"
 
         div class="row image"
           div class="col-md-12"
-            h2 class="up-theme" title='theme_name'
-            #{@selected_theme}
+            h2 class="up-theme text-center" title='Тема'
+              =@selected_theme
 
           div class="col-md-12"
-            h2.up{:title => "Image file name"}
-            #{@selected_image_name}
+            h2 class="up text-center" title="Image file name"
+              =@selected_image_name
 
           div class="col-md-1"
             div class="img-left-side"
               h3 title="list to previous image"
-              i class="fa fa-chevron-circle-left strong"
+                i class="fa fa-chevron-circle-left strong"
 
           div class="col-md-10"
             div class="img-center" title="Default image"
-            img alt="Default Image" src ='assets/pictures/raduga5обрез.jpg' title="Default image" style="width:100%; height:100%;"
-            div class="image_user_value" title="Expert value"
+              img alt="Default Image" src='assets/pictures/Expertise.jpg' title="Default image" style="width:100%; height:100%;"
+              div class="image_user_value" title="Expert value"
 
           div class="col-md-1"
             div class="img-right-side"
               h3 title="list to next image"
-              i class="fa fa-chevron-circle-right"
-
-        div class="row diag"
-          div class="col-md-12"
-            div class="image_diag"
-              div id="chosen_value" 50
-              h2 class="down" title="Value scale"
-              = "make_decision"
-              button class="button__results save" title="Save image diag results"
-              a data-remote="true" format="js" href="#" title="Save image diag results"
-                = "save_decision"
-
-              p class="left" 5%
-              div id="slider"
-                input id="slide" max="100" min="5" value="50", onchange="updateSlider(this.value)", step="5", type="range"
-              p class="right" 100%
+                i class="fa fa-chevron-circle-right"
