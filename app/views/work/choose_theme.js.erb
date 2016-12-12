@@ -5,8 +5,8 @@ $(document).click(function(e){
     }
     else {
         console.log(": In doc.click = OUT side content area"  );
-        $('.select_theme').empty().html("<%= j render 'button_theme_select' -%>");
+        $('.select_theme').html("<%= j render 'button_theme_select' -%>");
     }
 });
 
-$('.select_theme').empty().html("<%= j render 'choose_theme_from_arr' -%>");
+$('.select_theme').html("<%= j render 'choose_theme_from_arr' -%>");

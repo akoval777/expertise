@@ -2,12 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .left_controls, .image_display {
-  min-height: 460px;
+  min-height: 720px;
   padding: 25px;
 }
 
 .img-left-side, .img-right-side, .image_diag {
   display: none;
+}
+
+.img-left-side {
+  float: right;
+}
+
+.img-right-side {
+  float: left;
+}
+
+.img-left-side:hover, .img-right-side:hover {
+  cursor: pointer;
+  color: orange;
+}
+
+.fa-arrow-circle-right, .fa-arrow-circle-left {
+  font-size: 24px;
+}
+
+h2.up-theme {
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 

@@ -3,7 +3,7 @@ var imageData = '<%= raw @image_data %>';
 console.log("IN display_theme: @image_data = " + imageData );
 var valuesQty = '<%= @image_data[:values_qty] %>';
 console.log("IN display_theme: valuesQty = " + valuesQty );
-$('.left_controls span.total_values h2.total').append().html(valuesQty);
+$('.left_controls span.total_values h2.total').html(valuesQty);
 
 // show theme
 var selectedTheme = '<%= @image_data[:theme] %>';
@@ -18,10 +18,10 @@ if( selectedTheme == "Выберите тему для оценки" || selected
     $('.image_diag').css({"display": "block"});
 }
 
-$('.image_display h2.up-theme').append().html(selectedTheme);
+$('.image_display h2.up-theme').html(selectedTheme);
 
 //restore button
-$('.select_theme').empty().html("<%= j render 'button_theme_select' -%>");
+$('.select_theme').html("<%= j render 'button_theme_select' -%>");
 
 // get data from controller
 var imageCurrentIndex = '<%= @image_data[:index] %>';
@@ -37,13 +37,13 @@ var selectedThemeId = '<%= @image_data[:theme_id] %>';
 
 // show name of image
 //var nameImage = selectedImage.slice(0,-4) ;  // put away . file .jpg
-$('.image_display h2.up').append().html(oneImageName);
+$('.image_display figcaption').html(oneImageName);
 
 // show image
 var pathImage = "assets/pictures/" + oneImageFile;
 // $('.img-center').html('<img alt="Selected Image" src="'+ pathImage + '"/>');
-$(".img-center").attr({title: "Selected image" });
-$(".img-center img").attr({alt: "Selected Image", src: pathImage, title: "Selected image" });
+$(".img-center").attr({title: oneImageName });
+$(".img-center img").attr({alt: oneImageName, src: pathImage, title: oneImageName });
 
 // AJAX call to next image list
 $('.img-right-side').click(function(event) {
@@ -62,10 +62,12 @@ $('.img-right-side').click(function(event) {
     oneImageName = data_return.name;
     oneImageFile = data_return.file;
     oneImageId = data_return.image_id;
-    $('.image_display h2.up').append().html(oneImageName);
+    $('.image_display figcaption').hide().html(oneImageName).fadeIn();
     var pathImage = "assets/pictures/" + oneImageFile;
-    $(".img-center").attr({title: "Selected image" });
-    $(".img-center img").attr({alt: "Selected Image", src: pathImage, title: "Selected image" });
+    $(".img-center").attr({title: oneImageName });
+    $(".img-center img").fadeOut(function(){
+        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn();
+    });
 
     //var userValuedFlag = data_return.user_valued;
     //if(userValuedFlag  == 1){
@@ -108,10 +110,12 @@ $('.img-left-side').click(function(event) {
     oneImageFile = data_return.file;
     oneImageId = data_return.image_id;
 
-    $('.image_display h2.up').append().html(oneImageName);
+    $('.image_display figcaption').hide().html(oneImageName).fadeIn();
     var pathImage = "assets/pictures/" + oneImageFile;
-    $(".img-center").attr({title: "Selected image" });
-    $(".img-center img").attr({alt: "Selected Image", src: pathImage, title: "Selected image" });
+    $(".img-center").attr({title: oneImageName });
+    $(".img-center img").fadeOut(function(){
+        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn();
+    });
 
    // var userValuedFlag = data_return.user_valued;
    // if(userValuedFlag  == 1){

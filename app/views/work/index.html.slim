@@ -13,21 +13,19 @@ div class="image" style="margin: 25px 0;"
             h2 class="up-theme text-center" title='Тема'
               =@selected_theme
 
-          div class="col-md-12"
-            h2 class="up text-center" title="Image file name"
-              =@selected_image_name
-
           div class="col-md-1"
             div class="img-left-side"
-              h3 title="list to previous image"
-                i class="fa fa-chevron-circle-left strong"
+              span title="list to previous image"
+                i class="fa fa-arrow-circle-left strong"
 
           div class="col-md-10"
             div class="img-center" title="Default image"
-              img alt="Default Image" src='assets/pictures/Expertise.jpg' title="Default image" style="width:100%; height:100%;"
+              figure
+                img alt="Default Image" src='assets/pictures/Expertise.jpg' title="Default image" style="width:100%; height:100%"
+                figcaption class="text-center" =@selected_image_name
               div class="image_user_value" title="Expert value"
 
           div class="col-md-1"
             div class="img-right-side"
-              h3 title="list to next image"
-                i class="fa fa-chevron-circle-right"
+              span title="list to next image"
+                i class="fa fa-arrow-circle-right"
