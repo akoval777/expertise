@@ -32,4 +32,5 @@ class WorkController < ApplicationController
     image_data(theme, data)
     respond_to :js
   end
+
 end

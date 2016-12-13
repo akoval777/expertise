@@ -1,9 +1,12 @@
 header class="navbar navbar-inverse navbar-fixed-top"
   div class="container"
     div class="navbar-header"
-      = link_to 'Expertise на Ruby_on_Rails', root_path, id: "logo", class: "navbar-brand"
+      = link_to 'Expertise на Ruby_on_Rails', root_path, id: 'logo', class: 'navbar-brand'
     /div class="rails_logo"
       /= link_to image_tag("rails.png", alt: "Rails logo")
+    span class="locale" style="height: 50px; line-height: 50px"
+      = link_to image_tag('Russia.png', alt: 'Russia', title: 'Русский' ), locale: :ru
+      = link_to image_tag('United_Kingdom.png', alt: 'United Kingdom', title: 'English', style: 'margin-left: 5px'), locale: :en
     nav class="pull-right"
       ul class="nav navbar-nav"
         li = link_to 'Главная', root_path
