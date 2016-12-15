@@ -1,18 +1,11 @@
 module Api
   class ApiController < ApplicationController
     include WorkImage
+    before_action :set_params
 
     def next_image
-      current_index = params[:index].to_i
-      theme_id = params[:theme_id].to_i
-      length = params[:length].to_i
-
-      new_image_index = next_index(current_index, length)
-      next_image_data = show_image(theme_id, new_image_index)
-      # logger.info "In next_image: current_index = #{current_index.inspect},
-      #               new_image_index = #{new_image_index.inspect},
-      #               next_image_data = #{next_image_data.inspect} "
-
+      new_image_index = next_index(@current_index, @length)
+      next_image_data = show_image(@theme_id, new_image_index)
       respond_to do |format|
         if new_image_index.blank?
           format.html {  render nothing: true, status: :unprocessable_entity }
@@ -33,13 +26,8 @@ module Api
     end
 
     def prev_image
-      current_index = params[:index].to_i
-      theme_id = params[:theme_id].to_i
-      length = params[:length].to_i
-
-      new_image_index = prev_index(current_index, length)
-      prev_image_data = show_image(theme_id, new_image_index)
-
+      new_image_index = prev_index(@current_index, @length)
+      prev_image_data = show_image(@theme_id, new_image_index)
       respond_to do |format|
         if new_image_index.blank?
           format.html {  render nothing: true, status: :unprocessable_entity }
@@ -58,5 +46,13 @@ module Api
         end
       end
     end
+
+    private
+    def set_params
+      @current_index = params[:index].to_i
+      @theme_id = params[:theme_id].to_i
+      @length = params[:length].to_i
+    end
+
   end
 end

@@ -1,2 +1,21 @@
 ru:
-  hello: "Привет"
+  shared:
+    header:
+      logo_title: "Экспертиза на Ruby_on_Rails"
+      home: "Главная"
+      help: "Помощь"
+
+    footer:
+      about: "О сайте · "
+      contacts: " Контакты"
+      dev_msg: " Сайт в разработке"
+  work:
+    index:
+      def_select_theme: "Выберите тему для оценки"
+    button_theme_select:
+      select_theme_bt: "Выбрать тему"
+    choose_theme_from_arr:
+      select_theme: "Выберите тему"
+      prompt: "Список тем"
+    choose_theme:
+      select_theme: "Выберите тему"

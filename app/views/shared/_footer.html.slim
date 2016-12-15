@@ -2,7 +2,7 @@ footer class="footer"
   div class="container"
     p class="text-muted"
       i class="fa fa-copyright" style="margin-right: 10px;"  2016 Expertise
-      i class="fa fa-flag" style="color: orange; font-size: 1em;"  Сайт в разработке
+      i class="fa fa-flag" style="color: orange; font-size: 1em;"  =t('.dev_msg')
       span class="pull-right"
-        = link_to 'О сайте · ', about_path
-        = link_to ' Контакты', contacts_path
+        = link_to t('.about'), about_path
+        = link_to t('.contacts'), contacts_path

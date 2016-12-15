@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 20161206155424) do
   enable_extension "plpgsql"
 
   create_table "images", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name_ru"
+    t.string   "name_en"
     t.string   "file"
     t.float    "ave_value"
     t.datetime "created_at", null: false
@@ -25,7 +26,8 @@ ActiveRecord::Schema.define(version: 20161206155424) do
   end
 
   create_table "themes", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name_ru"
+    t.string   "name_en"
     t.integer  "qty_items"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

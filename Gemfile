@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'haml-rails'
+gem 'traco'
 gem 'slim'
 gem 'slim-rails'
 gem 'haml2slim'

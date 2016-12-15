@@ -4,7 +4,7 @@ div class="image" style="margin: 25px 0;"
       div class="left_controls panel panel-default"
         div class="select_theme"
           = render 'button_theme_select'
-        button class="btn btn-info center-block" style="margin-top: 20px" Показать погоду
+        //button class="btn btn-info center-block" style="margin-top: 20px" Показать погоду
 
 
     div class="col-md-9"
@@ -12,7 +12,7 @@ div class="image" style="margin: 25px 0;"
 
         div class="row image"
           div class="col-md-12"
-            h2 class="up-theme text-center" title='Тема'
+            h2 class="up-theme text-center"
               =@selected_theme
 
           div class="col-md-1"
@@ -21,11 +21,11 @@ div class="image" style="margin: 25px 0;"
                 i class="fa fa-arrow-circle-left strong"
 
           div class="col-md-10"
-            div class="img-center" title="Default image"
+            div class="img-center"
               figure
-                img alt="Default Image" src='assets/pictures/Expertise.jpg' title="Default image" style="width:100%; height:100%"
+                img alt="Expertise" src='assets/pictures/Expertise.jpg' style="width:100%; height:100%"
                 figcaption class="text-center" =@selected_image_name
-              div class="image_user_value" title="Expert value"
+              div class="image_user_value"
 
           div class="col-md-1"
             div class="img-right-side"

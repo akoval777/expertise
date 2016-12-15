@@ -1,24 +1,10 @@
 Rails.application.routes.draw do
-
-  #get 'work/index'
-
-  #get 'work/choose_theme'
-
-  #get 'work/display_theme'
-
   resources :themes
   resources :images
   resources :values
   resources :users
+
   root 'work#index'
-
-  #get 'main/index'
-
-  #get 'main/help'
-
-  #get 'main/contacts'
-
-  #get 'main/about'
 
   match 'index', to: 'main#index', via: 'get'
   match 'about', to: 'main#about', via: 'get'
