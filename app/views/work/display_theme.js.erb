@@ -62,11 +62,11 @@ $('.img-right-side').click(function(event) {
     oneImageName = data_return.name;
     oneImageFile = data_return.file;
     oneImageId = data_return.image_id;
-    $('.image_display figcaption').hide().html(oneImageName).fadeIn(500);
+    $('.image_display figcaption').hide().html(oneImageName).fadeIn(600);
     var pathImage = "assets/pictures/" + oneImageFile;
     $(".img-center").attr({title: oneImageName });
     $(".img-center img").fadeOut(500, function(){
-        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(500);
+        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(600);
     });
 
     //var userValuedFlag = data_return.user_valued;
@@ -111,11 +111,11 @@ $('.img-left-side').click(function(event) {
     oneImageFile = data_return.file;
     oneImageId = data_return.image_id;
 
-    $('.image_display figcaption').hide().html(oneImageName).fadeIn(500);
+    $('.image_display figcaption').hide().html(oneImageName).fadeIn(600);
     var pathImage = "assets/pictures/" + oneImageFile;
     $(".img-center").attr({title: oneImageName });
     $(".img-center img").fadeOut(500, function(){
-        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(500);
+        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(600);
     });
 
    // var userValuedFlag = data_return.user_valued;
