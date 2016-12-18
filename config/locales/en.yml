@@ -25,6 +25,9 @@ en:
       logo_title: "Expertise on Ruby_on_Rails"
       home: "Home"
       help: "Help"
+      sign_in: "Sign in"
+      sign_out: "Sign out"
+      profile: "Profile"
 
     footer:
       about: "About · "
@@ -40,4 +43,40 @@ en:
       prompt: "Themes list"
     choose_theme:
       select_theme: "Select theme"
+  main:
+    index:
+      welcome: "Welcome to the Expertise application"
+      login: "Please login or"
+      register: "register"
+      expertise: "Expertise"
+  users:
+    new:
+      new_user: "New user"
+    form:
+      create_account: "Register"
+    show:
+      hello: "Hello, "
+      success: "Your registration has been successfully completed!"
+      enter_application: "Click Expertise button to enter application"
+      expertise: "Expertise"
+    show_profile:
+      profile: "Profile"
+      name: "Your name: "
+      email: "Your email: "
+      avatar: "Avatar: "
+  sessions:
+    new:
+      sign_in: "Sign in"
+      entrance: "Login"
+      email: "Email"
+      password: "Password"
+    create:
+      error: "Login failed. Invalid email/password combination."
+  activerecord:
+      attributes:
+        user:
+          name: "Name"
+          email: "Email"
+          password: "Password (Minimum 6 characters required)"
+          password_confirmation: "Password confirmation"
 

@@ -4,6 +4,9 @@ ru:
       logo_title: "Экспертиза на Ruby_on_Rails"
       home: "Главная"
       help: "Помощь"
+      sign_in: "Войти"
+      sign_out: "Выйти"
+      profile: "Профиль"
 
     footer:
       about: "О сайте · "
@@ -19,3 +22,40 @@ ru:
       prompt: "Список тем"
     choose_theme:
       select_theme: "Выберите тему"
+  main:
+    index:
+      welcome: "Добро пожаловать в приложение Экспертиза"
+      login: "Пожалуйста войдите или"
+      register: "зарегистрируйтесь"
+      expertise: "Экспертиза"
+  users:
+    new:
+      new_user: "Новый пользователь"
+    form:
+      create_account: "Зарегистрироваться"
+    show:
+      hello: "Здравствуйте, "
+      success: "Регистрация прошла успешно!"
+      enter_application: "Для входа в приложение нажмите на кнопку Экспертиза"
+      expertise: "Экспертиза"
+    show_profile:
+      profile: "Профиль"
+      name: "Ваше имя: "
+      email: "Ваша почта: "
+      avatar: "Аватар: "
+  sessions:
+    new:
+      sign_in: "Войти"
+      entrance: "Вход"
+      email: "Эл.почта"
+      password: "Пароль"
+    create:
+      error: "Ошибка: неверная пара логин/пароль"
+  activerecord:
+    attributes:
+      user:
+        name: "Как вас зовут"
+        email: "Адрес эл. почты"
+        password: "Придумайте пароль (не менее 6 символов)"
+        password_confirmation: "Подтвердите пароль"
+

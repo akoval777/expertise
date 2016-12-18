@@ -1,0 +1,15 @@
+div class="panel panel-default"
+  div class="panel-heading text-center"
+    h1 = t('.entrance')
+  div class="panel-body"
+    - if !@error.nil?
+      strong style="color: red" = @error
+
+    = form_for(:session, url: sessions_path) do |f|
+      .field
+        = f.label :email, t('.email')
+        = f.email_field :email, class: 'form-control', required: 'required'
+      .field
+        = f.label :password, t('.password')
+        = f.password_field :password, class: 'form-control', required: 'required'
+      .actions = f.submit t('.sign_in'), class: "btn btn-primary center-block", style: 'margin-top:25px'

@@ -1,24 +1,20 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
+  before_action :set_user, only: [:show, :show_profile]
 
   # GET /users/1
   # GET /users/1.json
   def show
   end
 
+  def show_profile
+    if @user != current_user
+      redirect_to show_profile_user_url(current_user)
+    end
+  end
+
   # GET /users/new
   def new
     @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # POST /users
@@ -28,36 +24,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        sign_in @user
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,6 +42,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

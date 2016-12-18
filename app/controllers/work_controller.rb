@@ -2,6 +2,9 @@ class WorkController < ApplicationController
   require 'json'
   include WorkImage
   def index
+    unless signed_in?
+      redirect_to root_path
+    end
     @selected_theme = t('.def_select_theme')
     @selected_image_name = ''
     @current_locale = I18n.locale
@@ -15,7 +18,7 @@ class WorkController < ApplicationController
   end
 
   def display_theme
-    current_user_id = 1#current_user.id
+    current_user_id = current_user.id
     theme = I18n.locale == :ru ? Theme.find(params[:theme_id]).name_ru : Theme.find(params[:theme_id]).name_en
 
     if params[:theme_id] == '1'

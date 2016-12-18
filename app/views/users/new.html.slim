@@ -1,5 +1,7 @@
-h1 New user
+div class="panel panel-default"
+  div class="panel-heading text-center"
+    h1 = t('.new_user')
+  div class="panel-body"
+    == render 'form'
 
-== render 'form'
 
-= link_to 'Back', users_path

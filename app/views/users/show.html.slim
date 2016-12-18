@@ -1,12 +1,6 @@
-p#notice = notice
-
-p
-  strong Name:
-  = @user.name
-p
-  strong Email:
-  = @user.email
-
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to 'Back', users_path
+div class="panel panel-info text-center"
+  div class="panel-heading"
+    h1 #{t('.hello')} #{@user.name}. #{t('.success')}
+  div class="panel-body"
+    p = t('.enter_application')
+    = link_to t('.expertise'), work_path, class: "btn btn-primary"

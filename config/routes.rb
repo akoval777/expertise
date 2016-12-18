@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :themes
-  resources :images
-  resources :values
-  resources :users
+  resources :users, only: [:show, :show_profile, :new, :create] do
+    get :show_profile, on: :member
+  end
+  resources :sessions, only: [:new, :create, :destroy]
 
-  root 'work#index'
+  root 'main#index'
 
   match 'index', to: 'main#index', via: 'get'
   match 'about', to: 'main#about', via: 'get'
@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     #match 'save_value',       to: 'api#save_value',   via: :get
 
   end
+
+  match 'signup',   to: 'users#new',            via: 'get'
+  match 'signin',   to: 'sessions#new',         via: 'get'
+  match 'signout',  to: 'sessions#destroy',     via: 'delete'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

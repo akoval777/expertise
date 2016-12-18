@@ -1,9 +1,10 @@
 // Place all the styles related to the Work controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.left_controls, .image_display {
+.left_controls.panel, .image_display.panel {
   min-height: 720px;
   padding: 25px;
+  margin-top: 0;
 }
 
 .img-left-side, .img-right-side, .image_diag {

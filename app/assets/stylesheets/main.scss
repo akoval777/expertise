@@ -1,3 +1,12 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.main-page.panel {
+  margin-top: 40px;
+  min-height: 250px;
+}
+
+.main-page .panel-body {
+  margin-top: 50px;
+}
+

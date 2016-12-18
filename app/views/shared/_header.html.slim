@@ -2,8 +2,6 @@ header class="navbar navbar-inverse navbar-fixed-top"
   div class="container"
     div class="navbar-header"
       = link_to t('.logo_title'), root_path, id: 'logo', class: 'navbar-brand'
-    /div class="rails_logo"
-      /= link_to image_tag("rails.png", alt: "Rails logo")
     span class="locale" style="height: 50px; line-height: 50px"
       = link_to image_tag('Russia.png', alt: 'Russia', title: 'Русский', :style => I18n.locale==:ru ? 'opacity: 1' : 'opacity: 0.4' ), locale: :ru
       = link_to image_tag('United_Kingdom.png', alt: 'United Kingdom', title: 'English', :style => I18n.locale==:en ? 'opacity: 1; margin-left: 5px' : 'opacity: 0.4; margin-left: 5px'), locale: :en
@@ -11,20 +9,15 @@ header class="navbar navbar-inverse navbar-fixed-top"
       ul class="nav navbar-nav"
         li = link_to t('.home'), root_path
         li = link_to t('.help'), help_path
-        /- if signed_in?
-          li class="logged"
-            #{current_user.email}
-          = gravatar_for current_user
-          li id="fat-menu" class="dropdown"
-            a href="#" class="dropdown-toggle" data-toggle="dropdown"
-              p
-                = t('.person')
-                b class="caret"
+        - if signed_in?
+          li class="dropdown"
+            a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+              = current_user.name
+              span class="caret"
             ul class="dropdown-menu"
-              li = link_to t('.profile'), current_user
-              li = link_to t('.settings'), '#'
-              li class="divider"
+              li = link_to t('.profile'), show_profile_user_path(current_user)
+              li role="separator" class="divider"
               li
                 = link_to t('.sign_out'), signout_path, method: "delete"
-        /- else
+        - else
           li = link_to t('.sign_in'), signin_path

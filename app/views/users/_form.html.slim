@@ -8,8 +8,14 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: 'form-control', required: 'required'
   .field
     = f.label :email
-    = f.text_field :email
-  .actions = f.submit
+    = f.email_field :email, class: 'form-control', required: 'required'
+  .field
+    = f.label :password
+    = f.password_field :password, class: 'form-control', required: 'required', pattern: '.{6,}'
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: 'form-control', required: 'required', pattern: '.{6,}'
+  .actions = f.submit t('.create_account'), class: 'btn btn-large btn-primary center-block', style: 'margin-top:25px'

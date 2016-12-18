@@ -1,6 +1,9 @@
-div class="page-header"
-  h1 Главная страница
-ul
-  li = link_to 'О сайте', main_about_path
-  li = link_to 'Контакты', main_contacts_path
-  li = link_to 'Помощь', main_help_path
+div class="main-page panel panel-default text-center"
+  div class="panel-heading"
+    h1 = t('.welcome')
+  div class="panel-body"
+    - if signed_in?
+      = link_to t('.expertise'), work_path, class: 'btn btn-lg btn-primary'
+    - else
+      p #{t('.login')} #{link_to t('.register'), signup_path}
+
