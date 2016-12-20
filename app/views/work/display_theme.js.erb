@@ -1,3 +1,49 @@
+function ajax(image){
+    $.ajax({
+        type: "get",
+        url: "api/"+image+"_image",
+        data: { index: imageCurrentIndex,
+            theme_id: selectedThemeId,
+            length: themeImagesSize,
+            locale: locale
+        },
+        dataType: 'json'
+    }).done(function (data_return) {
+        console.log("success1c:  " + data_return.notice );
+        imageCurrentIndex = data_return.new_image_index;
+        oneImageName = data_return.name;
+        oneImageFile = data_return.file;
+        oneImageId = data_return.image_id;
+        $('.image_display figcaption').hide().html(oneImageName).fadeIn(600);
+        var pathImage = "assets/pictures/" + oneImageFile;
+        $(".img-center").attr({title: oneImageName });
+        $(".img-center img").fadeOut(500, function(){
+            $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(600);
+        });
+
+        //var userValuedFlag = data_return.user_valued;
+        //if(userValuedFlag  == 1){
+        //  $('.left_controls span.common_value').css({"display": "block"});
+        // var imageValue = data_return.value;
+        // $('.image .image_display .image_user_value').append().html(imageValue).css({"display": "block"});
+        // $('.image .image_display .image_diag').css({"display": "none"});
+
+        //  var imageCommonValue = data_return.common_ave_value;
+        // $('.left_controls span.common_value h2.common').append().html(imageCommonValue);
+
+        //// $('.image .image_display .image_user_value').css({"display": "block"});
+        //}else{
+        // $('.left_controls span.common_value').css({"display": "none"});
+        //  $('.image .image_display .image_user_value').css({"display": "none"});
+        //  $('.image .image_display .image_diag').css({"display": "block"});
+        // }
+
+    })
+        .fail(function (data_return) {
+            console.log("error: data_return = " + data_return);
+        });
+}
+
 var locale = '<%= I18n.locale %>';
 // get data from controller
 var imageData = '<%= raw @image_data %>';
@@ -45,98 +91,13 @@ $(".img-center").attr({title: oneImageName });
 $(".img-center img").attr({alt: oneImageName, src: pathImage, title: oneImageName });
 
 // AJAX call to next image list
-$('.img-right-side').click(function(event) {
-  event.stopImmediatePropagation(); // would stop the event from bubbling to parent elements,
-  $.ajax({
-    type: "get",
-    url: "api/next_image",
-    data: { index: imageCurrentIndex,
-      theme_id: selectedThemeId,
-      length: themeImagesSize,
-      locale: locale
-      },
-    dataType: 'json'
-  }).done(function (data_return) {
-    console.log("success1c:  " + data_return.notice );
-    imageCurrentIndex = data_return.new_image_index;
-    oneImageName = data_return.name;
-    oneImageFile = data_return.file;
-    oneImageId = data_return.image_id;
-    $('.image_display figcaption').hide().html(oneImageName).fadeIn(600);
-    var pathImage = "assets/pictures/" + oneImageFile;
-    $(".img-center").attr({title: oneImageName });
-    $(".img-center img").fadeOut(500, function(){
-        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(600);
-    });
-
-    //var userValuedFlag = data_return.user_valued;
-    //if(userValuedFlag  == 1){
-    //  $('.left_controls span.common_value').css({"display": "block"});
-     // var imageValue = data_return.value;
-     // $('.image .image_display .image_user_value').append().html(imageValue).css({"display": "block"});
-     // $('.image .image_display .image_diag').css({"display": "none"});
-
-    //  var imageCommonValue = data_return.common_ave_value;
-     // $('.left_controls span.common_value h2.common').append().html(imageCommonValue);
-
-      //// $('.image .image_display .image_user_value').css({"display": "block"});
-    //}else{
-     // $('.left_controls span.common_value').css({"display": "none"});
-    //  $('.image .image_display .image_user_value').css({"display": "none"});
-    //  $('.image .image_display .image_diag').css({"display": "block"});
-   // }
-
-  })
-      .fail(function (data_return) {
-        console.log("error: data_return = " + data_return);
-      });
+$('.img-right-side').click(function(event){
+    event.stopImmediatePropagation(); // would stop the event from bubbling to parent elements,
+    ajax('next');
 });
 
 // AJAX call to previous image list
-$('.img-left-side').click(function(event) {
-  event.stopImmediatePropagation(); // would stop the event from bubbling to parent elements,
-  $.ajax({
-    type: "get",
-    url: "api/prev_image",
-    data: { index: imageCurrentIndex,
-      theme_id: selectedThemeId,
-      length: themeImagesSize,
-      locale: locale
-    },
-    dataType: 'json'
-  }).done(function (data_return) {
-    console.log("success1c:  " + data_return.notice );
-    imageCurrentIndex = data_return.new_image_index;
-    oneImageName = data_return.name;
-    oneImageFile = data_return.file;
-    oneImageId = data_return.image_id;
-
-    $('.image_display figcaption').hide().html(oneImageName).fadeIn(600);
-    var pathImage = "assets/pictures/" + oneImageFile;
-    $(".img-center").attr({title: oneImageName });
-    $(".img-center img").fadeOut(500, function(){
-        $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(600);
-    });
-
-   // var userValuedFlag = data_return.user_valued;
-   // if(userValuedFlag  == 1){
-     // $('.left_controls span.common_value').css({"display": "block"});
-    //  var imageValue = data_return.value;
-    //  $('.image .image_display .image_user_value').append().html(imageValue);
-    //  $('.image .image_display .image_diag').css({"display": "none"});
-    //  var imageCommonValue = data_return.common_ave_value;
-     // $('.left_controls span.common_value h2.common').append().html(imageCommonValue);
-    //  $('.image .image_display .image_user_value').css({"display": "block"});
-    //}else{
-    //  $('.left_controls span.common_value').css({"display": "none"});
-    //  console.log("7 IN ELSE: userValuedImage == false? == " + userValuedFlag);
-    //  $('.image .image_display .image_user_value').css({"display": "none"});
-    //  $('.image .image_display .image_diag').css({"display": "block"});
-
-    //}
-  })
-      .fail(function (data_return) {
-        console.log("error: data_return = " + data_return);
-      });
-
+$('.img-left-side').click(function(event){
+    event.stopImmediatePropagation();
+    ajax('prev');
 });

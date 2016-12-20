@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if @user != current_user
+      redirect_to user_url(current_user)
+    end
   end
 
   def show_profile

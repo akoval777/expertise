@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
         redirect_to work_url
       else
         # Create an error message and re-render the signin form.
-        #flash.now[:alert] = 'Login failed. Invalid email/password combination. Repeat'
         @error = t('.error')
         render 'new'
       end
