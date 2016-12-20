@@ -49,6 +49,22 @@ en:
       login: "Please login or"
       register: "register"
       expertise: "Expertise"
+    contacts:
+      contacts: "Contacts"
+      proposals: "Proposals for the development of application and the improvement of its functionality can be sent to: akoval777@gmail.com"
+    about:
+      about: "About"
+      about_text: "The application is designed to gather expert analysis on a variety of subjects. It allows registered users acting as experts to do the job from the available list: give your assessment on the given scale of the proposed images of the selected area. The results are processed and available for review."
+    help:
+      help: "Help"
+      foreward: "User Interface Expertise built on the principle of 'single-application'. This greatly simplifies the user interaction with the application."
+      steps_h: "Basic steps:"
+      step_1: "To access the service you need to register"
+      step_2: "If the user is registered, he must enter the site"
+      step_3: "First of all, you need to choose a topic on which expert is going to leave its estimates. Select a theme from the list, the user gets access to the image list"
+      step_4: "The user evaluates the image displayed on the screen by selecting the desired value on the scale of assessments"
+      step_5: "The display shows the average rating of all the experts who participated in the survey on the image on the chosen topic. And the total of all ratings on the site"
+      step_6: "You can view the final grades for all the images in the selected theme"
   users:
     new:
       new_user: "New user"

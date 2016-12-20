@@ -70,6 +70,4 @@ Theme.create([
              ])
 User.delete_all
 User.reset_pk_sequence
-User.create([
-    {name: 'Example User', email: 'test@test.ru'}
-            ])
+
