@@ -6,7 +6,10 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
+require 'factory_girl'
+require 'database_cleaner'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -20,7 +23,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -54,4 +57,62 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+#--------------------------------------------------------------
+  ActiveRecord::Base.logger.level = Logger::INFO
+  ActionController::Base.logger.level = Logger::ERROR
+  Rails.logger.level = Logger::ERROR
+  # colors in terminal
+  config.failure_color = :red #:magenta
+  config.tty = true
+  config.color = true
+
+  config.infer_spec_type_from_file_location!
+  config.include FactoryGirl::Syntax::Methods
+
+  config.render_views
+
+  config.include Capybara::DSL
+
+  Capybara.javascript_driver = :webkit
+  # # Capybara.default_wait_time = 2000
+  # config.include Angular::DSL
+
+  # Capybara::Screenshot.webkit_options = { width: 1280, height: 1000 }
+  # # Keep only the screenshots generated from the last failing test suite
+  Capybara::Screenshot.prune_strategy = :keep_last_run
+
+  # config.use_transactional_fixtures = true
+
+  # @source http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+  #
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  # config.after :each do
+  #   ActiveRecord::Base.subclasses.each(&:delete_all)
+  #   ActiveRecord::Base.subclasses.each(&:reset_pk_sequence)
+  # end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+    DatabaseCleaner.strategy = :deletion
+  end
+
+  # Filtes needed tests(add :focus to run them, add :disable to disable them)
+  config.filter_run :focus
+  config.run_all_when_everything_filtered = true
+
+  config.filter_run_excluding disabled: true
 end
