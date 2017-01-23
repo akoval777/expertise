@@ -62,7 +62,7 @@ Image.create([
 Theme.delete_all
 Theme.reset_pk_sequence
 Theme.create([
-    {name_ru: '----', name_en:'----'}, #1 нет темы
+    {name_ru: '----', name_en:'----'},
     {name_ru: 'Какая из картин художника И.Айвазовского наилучшим образом характеризует его творчество?', name_en:'What of the I.Aivazovsky pictures best describes his work?'},
     {name_ru: 'Какая из картин художника К.Брюллова наилучшим образом характеризует его творчество?', name_en:'What of the K.Briullov pictures best describes his work?'},
     {name_ru: 'Какая из картин художника Э.Мане наилучшим образом характеризует его творчество?', name_en:'What of the E.Manet pictures best describes his work?'},

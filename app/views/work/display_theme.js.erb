@@ -9,7 +9,6 @@ function ajax(image){
         },
         dataType: 'json'
     }).done(function (data_return) {
-        console.log("success1c:  " + data_return.notice );
         imageCurrentIndex = data_return.new_image_index;
         oneImageName = data_return.name;
         oneImageFile = data_return.file;
@@ -21,22 +20,22 @@ function ajax(image){
             $(this).attr({alt: oneImageName, src: pathImage, title: oneImageName }).fadeIn(600);
         });
 
-        //var userValuedFlag = data_return.user_valued;
-        //if(userValuedFlag  == 1){
-        //  $('.left_controls span.common_value').css({"display": "block"});
-        // var imageValue = data_return.value;
-        // $('.image .image_display .image_user_value').append().html(imageValue).css({"display": "block"});
-        // $('.image .image_display .image_diag').css({"display": "none"});
+        var userValuedFlag = data_return.user_valued;
+        if(userValuedFlag  == 1){
+          $('.common_value').css({"display": "block"});
+          var imageValue = data_return.value;
+          $('.image-user-value p').html(imageValue);
+          $('.choose-user-value').css({"display": "none"});
 
-        //  var imageCommonValue = data_return.common_ave_value;
-        // $('.left_controls span.common_value h2.common').append().html(imageCommonValue);
+          var imageCommonValue = data_return.common_ave_value;
+          $('span.common').html(imageCommonValue);
 
-        //// $('.image .image_display .image_user_value').css({"display": "block"});
-        //}else{
-        // $('.left_controls span.common_value').css({"display": "none"});
-        //  $('.image .image_display .image_user_value').css({"display": "none"});
-        //  $('.image .image_display .image_diag').css({"display": "block"});
-        // }
+          $('.image-user-value').css({"display": "block"});
+        } else{
+          $('.common_value').css({"display": "none"});
+          $('.image-user-value').css({"display": "none"});
+          $('.choose-user-value').css({"display": "block"});
+        }
 
     })
         .fail(function (data_return) {
@@ -47,10 +46,8 @@ function ajax(image){
 var locale = '<%= I18n.locale %>';
 // get data from controller
 var imageData = '<%= raw @image_data %>';
-console.log("IN display_theme: @image_data = " + imageData );
 var valuesQty = '<%= @image_data[:values_qty] %>';
-console.log("IN display_theme: valuesQty = " + valuesQty );
-$('.left_controls span.total_values h2.total').html(valuesQty);
+$('.total').html(valuesQty);
 
 // show theme
 var selectedTheme = '<%= @image_data[:theme] %>';
@@ -58,11 +55,11 @@ var selectedTheme = '<%= @image_data[:theme] %>';
 if( selectedTheme == "Выберите тему для оценки" || selectedTheme == "Select theme to give your opinion" || selectedTheme == ""){
     $('.img-left-side').css({"display": "none"});
     $('.img-right-side').css({"display": "none"});
-    $('.image_diag').css({"display": "none"});
+    $('.choose-user-value').css({"display": "none"});
 }else{
     $('.img-left-side').css({"display": "block"});
     $('.img-right-side').css({"display": "block"});
-    $('.image_diag').css({"display": "block"});
+    $('.choose-user-value').css({"display": "block"});
 }
 
 $('.image_display h2.up-theme').html(selectedTheme);
@@ -100,4 +97,44 @@ $('.img-right-side').click(function(event){
 $('.img-left-side').click(function(event){
     event.stopImmediatePropagation();
     ajax('prev');
+});
+
+// AJAX call to save image
+$('a.button__results.save').unbind( "click" ).click(function(event) {
+    event.stopImmediatePropagation();
+    var displayValue = $('output').val();
+
+    $.ajax({
+        type: "get",
+        url: "api/save_value",
+        data: { image_id: oneImageId,
+            theme_id: selectedThemeId,
+            value: displayValue
+        },
+        dataType: 'json'
+    }).done(function (data_return) {
+        console.log("success1c:  " + data_return.notice );
+        var userImageValue = data_return.user_value;
+        $('.image-user-value p').html(userImageValue);
+
+        var userValuedFlag = data_return.user_valued;
+        if(userValuedFlag  == 1){
+            $('.common_value').css({"display": "block"});
+            $('.choose-user-value').css({"display": "none"});
+
+            var valuesQty = data_return.values_qty;
+            $('.total').html(valuesQty);
+
+            var imageCommonValue = data_return.common_ave_value;
+            $('span.common').html(imageCommonValue);
+
+            $('.image-user-value').css({"display": "block"});
+        } else{
+            $('.common_value').css({"display": "none"});
+            $('.choose-user-value').css({"display": "block"});
+        }
+    })
+        .fail(function (data_return) {
+            console.log("error: data_return = " + data_return);
+        });
 });
